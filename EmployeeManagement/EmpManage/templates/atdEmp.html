@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Attandance For Employee</title>
+{% endblock title %}
+
+{% block main %}
+<div class="d-flex justify-content-center">
+    <h3 class="my-3 p-2 bg-info bg-gradient text-light w-75 text-center rounded-1">Daily Attandance For Employee</h3
+        style="--bs-bg-opacity: .5;">
+</div>
+<div class="container-md py-3 ">
+    <table class="table table-striped text-center table-info table-bordered border-info">
+        <tr class="">
+            <th>Sr no.</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Salary</th>
+            <th>Dept</th>
+            <th>Role</th>
+            <th>Phone</th>
+            <th>Joining Date</th>
+            <th>Present</th>
+            <th>Absent</th>
+            <th>Total Days</th>
+            <th>Present Days</th>
+            <th>Absent Days</th>
+        </tr>
+
+        {% for dt in data %}
+        <tr class="">
+            <td>{{ forloop.counter }}</td>
+            <td class="fw-bold">{{ dt.firstname|capfirst }}</td>
+            <td class="fw-bold">{{ dt.lastname|capfirst }}</td>
+            <td>{{ dt.salary }}</td>
+            <td>{{ dt.dept }}</td>
+            <td>{{ dt.role }}</td>
+            <td>{{ dt.phone }}</td>
+            <td>{{ dt.jd }}</td>
+            <td>
+                <a href="{% url 'mark_attendance' id=dt.id status=1 %}">
+                    <button class="btn btn-sm btn-success"><i class="bi bi-hand-thumbs-up-fill"></i> Present</button>
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'mark_attendance' id=dt.id status=0 %}">
+                    <button class="btn btn-sm btn-warning"><i class="bi bi-hand-thumbs-down-fill"></i> Absent</button>
+                </a>
+            </td>
+            <td> 255 </td>
+            <td>
+                {{ dt.present_day }}
+            </td>
+            <td>
+                {{ dt.absent_day }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock main %}

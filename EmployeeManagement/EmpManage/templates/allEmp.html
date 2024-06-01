@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Details of all Employees </title>
+{% endblock title %}
+
+{% block main %}
+<div class="d-flex justify-content-center">
+    <h3 class="my-3 p-2 bg-primary bg-gradient text-light w-75 text-center rounded-1">All Employee Detail's</h3 style="--bs-bg-opacity: .5;">
+</div>
+<div class="container-md py-3 ">
+    <table class="table table-striped text-center table-success table-bordered border-primary">
+        <tr class="">
+            <th>Sr no.</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Salary</th>
+            <th>Dept</th>
+            <th>Role</th>
+            <th>Phone</th>
+            <th>Joining Date</th>
+        </tr>
+        
+        {% for dt in data %}
+            <tr class="">
+                <td>{{ forloop.counter }}</td>
+                {% comment %} <td class="fw-bold">{{ dt.id }}</td> {% endcomment %}
+                <td class="fw-bold">{{ dt.firstname|capfirst  }}</td>
+                <td class="fw-bold">{{ dt.lastname|capfirst  }}</td>
+                <td>{{ dt.salary }}</td>
+                <td>{{ dt.dept }}</td>
+                <td>{{ dt.role }}</td>
+                <td>{{ dt.phone }}</td>
+                <td>{{ dt.jd }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock main %}
+
+
+

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Add Details of Employee</title>
+{% endblock title %}
+
+{% block main %}
+<div class="d-flex justify-content-center">
+    <h3 class="my-3 p-2 bg-success bg-gradient text-light w-75 text-center rounded-1">Add Employee Detail's</h3
+        style="--bs-bg-opacity: .5;">
+</div>
+
+<div class="container my-2 px-2">
+    {% if data == 1 %}
+    <div class="alert alert-success alert-dismissible fade show fw-bold text-center" role="alert">
+        Employee data added successfully!!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+
+    <form action="{% url 'addEmp' %}" method="post">
+        {% csrf_token %}
+        <div class="row d-flex my-2">
+            <div class="col">
+                <label for="addemployee" class="form-label fw-bold">First Name</label>
+                <input type="text" class="form-control border-success p-2 fw-bold" aria-label="First name" name="first"
+                    required style='text-transform:capitalize'>
+            </div>
+            <div class="col">
+                <label for="addemployee" class="form-label fw-bold">Last Name</label>
+                <input type="text" class="form-control border-success p-2 fw-bold" aria-label="Last name" name="last"
+                    required style='text-transform:capitalize'>
+            </div>
+        </div>
+
+        <div class="row d-flex my-2">
+            <div class="col-6">
+                <label for="addemployee" class="form-label fw-bold">Phone</label>
+                <input type="tel" class="form-control border-success p-2 fw-bold" aria-label="Phone" name="phone"
+                    maxlength="10" required>
+            </div>
+            <div class="col-6">
+                <label for="addemployee" class="form-label fw-bold">Joining date</label>
+                <input type="date" class="form-control border-success p-2 fw-bold" aria-label="date" name="date"
+                    required>
+            </div>
+        </div>
+
+
+        <div class="row d-flex my-2">
+            <div class="col-6">
+                <label for="addemployee" class="form-label fw-bold">Salary</label>
+                <input type="number" class="form-control border-success p-2 fw-bold" aria-label="salary" name="salary"
+                    required>
+            </div>
+            <div class="col-6">
+                <label for="addemployee" class="form-label fw-bold">Bonus</label>
+                <input type="number" class="form-control border-success p-2 fw-bold" aria-label="Bonus" name="bonus"
+                    required>
+            </div>
+        </div>
+
+        <div class="row d-flex my-2">
+            <div class="col-6">
+                <label for="addemployee" class="form-label fw-bold">Department</label>
+                <select class="form-select border-success p-2 fw-bold" aria-label="Default select example" name="dept" required>
+                    <option selected>Select Department</option>
+                    <option value="HR">HR</option>
+                    <option value="IT">IT</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Marketing">Marketing</option>
+                </select>
+            </div>
+            <div class="col-6">
+                <label for="addemployee" class="form-label fw-bold">Role</label>
+                <select class="form-select border-success p-2 fw-bold" aria-label="Default select example" name="role"
+                    required>
+                    <option selected>Select Role</option>
+                    <option value="Python developer">Python developer</option>
+                    <option value="Java developer">Java developer</option>
+                    <option value=".Net Developer">.Net developer</option>
+                    <option value="MERN Developer">MERN Developer</option>
+                    <option value="Market Analyst">Market Analyst</option>
+                    <option value="Sales Researcher">Sales Researcher</option>
+                    <option value="MFA">MFA</option>
+                    <option value="Sales projections">Sales projections</option>
+                    <option value="Sales Planner">Sales Planner</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-3 py-3">
+            <button type="submit" class="btn btn-md btn-success">Submit</button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock main %}

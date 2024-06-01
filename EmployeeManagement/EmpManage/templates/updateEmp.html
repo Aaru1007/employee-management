@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Update Employee details</title>
+{% endblock title %}
+
+{% block main %}
+
+<div class="d-flex justify-content-center">
+    <h3
+        class="my-3 p-2 bg-secondary bg-gradient text-light w-75 text-center rounded-1">
+        {{ data.firstname }} {{ data.lastname }} Detail's</h3
+        style="--bs-bg-opacity: .5;">
+    </div>
+
+    <div class="container my-2 px-2">
+        {% if status == 1 %}
+        <div
+            class="alert alert-secondary alert-dismissible fade show fw-bold text-center"
+            role="alert">
+            {{ data.firstname }} data updated successfully!!
+            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                aria-label="Close"></button>
+        </div>
+        {% endif %}
+
+        <form action="/dataUpEmp/" method="POST">
+            {% csrf_token %}
+            <div class="row d-flex my-2">
+                <div class="col">
+                    <label for="inputEmail4" class="form-label fw-bold">First
+                        Name</label>
+                    <input type="text"
+                        class="form-control border-secondary p-2 fw-bold"
+                        aria-label="First name" name="first"
+                        value="{{ data.firstname }}" required
+                        style='text-transform:capitalize'>
+                </div>
+                <div class="col">
+                    <label for="inputEmail4" class="form-label fw-bold">Last
+                        Name</label>
+                    <input type="text"
+                        class="form-control border-secondary p-2 fw-bold"
+                        aria-label="Last name"
+                        value="{{ data.lastname|capfirst }}" name="last"
+                        required style='text-transform:capitalize'>
+                </div>
+            </div>
+
+            <div class="row d-flex my-2">
+                <div class="col-6">
+                    <label for="inputEmail4"
+                        class="form-label fw-bold">Phone</label>
+                    <input type="number"
+                        class="form-control border-secondary p-2 fw-bold"
+                        aria-label="Phone" name="phone" value="{{ data.phone }}"
+                        required>
+                </div>
+                <div class="col-6">
+                    <label for="inputEmail4" class="form-label fw-bold">Joining
+                        date</label>
+                    <input type="text"
+                        class="form-control border-secondary p-2 fw-bold"
+                        aria-label="date" name="date" value="{{ data.jd }}"
+                        required disabled>
+                </div>
+            </div>
+
+            <div class="row d-flex my-2">
+                <div class="col-6">
+                    <label for="inputEmail4"
+                        class="form-label fw-bold">Salary</label>
+                    <input type="number"
+                        class="form-control border-secondary p-2 fw-bold"
+                        aria-label="salary" name="salary"
+                        value="{{ data.salary }}" required>
+                </div>
+                <div class="col-6">
+                    <label for="bonus" class="form-label fw-bold">Bonus</label>
+                    <input type="number"
+                        class="form-control border-secondary p-2 fw-bold"
+                        aria-label="Bonus" name="bonus" value="{{ data.bonus }}"
+                        required>
+                </div>
+            </div>
+
+            <div class="row d-flex my-2">
+                <div class="col-6">
+                    <label for="dept"
+                        class="form-label fw-bold">Department</label>
+                    <select class="form-select border-secondary p-2 fw-bold"
+                        aria-label="Default select example" name="dept"
+                        required>
+                        <option selected value={{ data.dept }}>{{ data.dept }}</option>
+                        <option value="HR">HR</option>
+                        <option value="IT">IT</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Marketing">Marketing</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label for="inputEmail4"
+                        class="form-label fw-bold">Role</label>
+                    <select class="form-select border-secondary p-2 fw-bold"
+                        aria-label="Default select example" name="role"
+                        required>
+                        <option selected value={{ data.role }}>{{ data.role }}</option>
+                        <option value="Python developer">Python
+                            developer</option>
+                        <option value="Java developer">Java developer</option>
+                        <option value=".Net Developer">.Net developer</option>
+                        <option value="MERN Developer">MERN Developer</option>
+                        <option value="Market Analyst">Market Analyst</option>
+                        <option value="Sales Researcher">Sales
+                            Researcher</option>
+                        <option value="MFA">MFA</option>
+                        <option value="Sales projections">Sales
+                            projections</option>
+                        <option value="Sales Planner">Sales Planner</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center mt-3 py-3">
+                <input type="hidden" name="id" value="{{ data.id }}">
+                <button type="submit"
+                    class="btn btn-md btn-success mx-2 px-3 fw-bold"
+                    onclick="return confirm('Are you sure you want to update?')">Update</button>
+                <a href="../../delEmp/{{ data.id }}"
+                    class="btn btn-md btn-danger mx-2 px-3 fw-bold"
+                    onclick="return confirm('Are you sure you want to delete an employee data?')">Delete</a>
+                <a href="{% url 'rm' %}" class="btn btn-secondary  mx-2 px-3 fw-bold">Back</a>
+            </div>
+
+        </form>
+    </div>
+
+    {% endblock main %}
